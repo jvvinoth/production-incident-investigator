@@ -1,8 +1,9 @@
 # Use case 2 — Production Incident Investigator
 
-**Name:** `<your name>`
-**Phone:** `<your phone>`
+**Name:** Vinoth
+**Phone:** 82727344
 **Email:** jvvinoth2@gmail.com
+**Repo:** https://github.com/jvvinoth/production-incident-investigator
 
 Files in this submission:
 
@@ -12,7 +13,23 @@ Files in this submission:
 | `answers.json` | Output of `investigate()` for both incidents, produced by `run.py` |
 | `run.py` | Loads each incident via `data/loader.py`, prints the per-axis corroboration table, writes `answers.json` |
 
-Reproduce with `python3 run.py` (Python 3.9+, no dependencies).
+Reproduce (Python 3.9+, no dependencies, no API keys):
+
+- **From the repo above:** `python3 run.py`
+- **From `submissions/vinoth/` inside the hackathon repo**, using its own loader:
+
+  ```bash
+  cd usecase-2-production-incident-investigator
+  python3 -c "
+  from data.loader import load_incident
+  import json, sys
+  sys.path.insert(0, 'submissions/vinoth')
+  import solution
+  names = ['incident_a_pool_exhaustion', 'incident_b_ambiguous_delay']
+  answers = {n: solution.investigate(*load_incident(n)) for n in names}
+  json.dump(answers, open('submissions/vinoth/answers.json', 'w'), indent=2)
+  "
+  ```
 
 ---
 
